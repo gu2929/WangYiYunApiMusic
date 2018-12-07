@@ -1,0 +1,104 @@
+:global{
+    html,body,#root,.wraps{
+        width:100%;
+        height:100%;
+        margin:0;
+        padding:0;
+    }
+    .wrap{
+        width:100%;
+        height:100%;
+        display:flex;
+        flex-direction: column;
+    }
+    header{
+        width:100%;
+        height:40px;
+        background:#33383a;
+        display:flex;
+        align-items: center;
+        padding:0 15px;
+        span{
+            width:20px;
+            height:20px;
+            display:inline-block;
+        }
+        p{
+            flex:1;
+            height:30px;
+            border-radius: 15px;
+            background:#5b6061;
+            text-align: center;
+            color:#fff;
+            line-height:30px;
+        }
+        span:nth-of-type(1){
+            background:url('../assets/song.png') no-repeat 0 0/100%;
+            color:#fff;
+            margin-right:10px;
+        }
+        span:nth-of-type(2){
+            background:url('../assets/advio.png') no-repeat 0 0/100%;
+            color:#fff;
+            margin-left:10px;
+        }
+
+    }
+    .cont{ 
+        width:100%;
+        flex:1;
+        overflow: auto;
+    }
+    footer{
+        width:100%;
+        height:auto;
+        background:#eee;
+        display:flex;
+        flex-shrink: 0;
+        a{
+            flex:1;
+            text-align: center;
+            color:#ccc;
+            text-decoration: none;
+            padding:10px 0;
+            p{
+                margin:0;
+            }
+            span{
+                width:20px;
+                height:20px;
+                display:inline-block;
+            }
+        }
+        a:nth-of-type(1) span{
+            background:url('../assets/find.png') no-repeat 0 0/100%;
+        }
+        a.active:nth-of-type(1) span{
+            background:url('../assets/find_active.png') no-repeat 0 0/100%;
+        }
+        a:nth-of-type(2) span{
+            background:url('../assets/video.png') no-repeat 0 0/100%;
+        }
+        a.active:nth-of-type(2) span{
+            background:url('../assets/video_active.png') no-repeat 0 0/100%;
+        }
+        a:nth-of-type(3) span{
+            background:url('../assets/my.png') no-repeat 0 0/100%;
+        }
+        a.active:nth-of-type(3) span{
+            background:url('../assets/my_active.png') no-repeat 0 0/100%;
+        }
+        a:nth-of-type(4) span{
+            background:url('../assets/people.png') no-repeat 0 0/100%;
+        }
+        a.active:nth-of-type(4) span{
+            background:url('../assets/people_active.png') no-repeat 0 0/100%;
+        }
+        a:nth-of-type(5) span{
+            background:url('../assets/message.png') no-repeat 0 0/100%;
+        }
+        a.active:nth-of-type(5) span{
+            background:url('../assets/message_active.png') no-repeat 0 0/100%;
+        }
+    }
+}
