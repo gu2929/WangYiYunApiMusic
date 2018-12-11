@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'dva/router';
+//封装公共路由嵌套方法
 export default props=>{
   return <Switch>{
     props.routes.map((item, index)=>{

@@ -1,4 +1,8 @@
-import {getSongUrlApi,getSongDetailApi,getSongLyricApi} from '../services/playSongApi';
+//引入获取歌曲播放路径和歌曲详情和歌词的方法
+import {getSongUrlApi,
+  getSongDetailApi,
+  getSongLyricApi} from '../services/playSongApi';
+//引入处理时间的方法
 import {formatTime} from '../utils/request'
 export default {
 
@@ -11,7 +15,6 @@ export default {
       playList:[],
       playIndex:0,
       mode:0,
-      songLyricTime:[],
       songLyricText:[]
     },
   
@@ -21,27 +24,36 @@ export default {
     },
   
     effects: {
+      //获取一个歌曲的路径和详情
       *getSongUrl({payload},{call,put}){
         let arr = yield call(getSongUrlApi,payload);
         let data=yield call(getSongDetailApi,payload);
+        let playList=[];
         let url=arr[0].url;
         data=data[0];
+        playList.push({detail:data});
         yield put({
           type:'getSongUrlReducers',
-          payload:{url,data,payload}
+          payload:{
+            url,
+            data,
+            payload,
+            playList
+          }
         })
       },
-
+      //获取一组歌曲的路径和详情
       *getSongUrls ({payload},{call,put}){
         let obj = yield call(getSongUrlApi,payload.join(','));
         let data=yield call(getSongDetailApi,payload.join(','));
         let newArr=[];
-        obj.forEach(v=>{
-          data.filter(val=>{
+        //把两个数组进行排序 处理放在一个数组里
+        data.forEach(v=>{
+          obj.filter(val=>{
             if(v.id===val.id){
               newArr.push({
-                info:v.url,
-                detail:val
+                info:val.url,
+                detail:v
               })
             }
           })
@@ -51,7 +63,7 @@ export default {
           payload:newArr
         })
       },
-
+      //获取歌词
       *getSongLyric ({payload},{call,put}){
         let data=yield call(getSongLyricApi,payload);
         yield put ({
@@ -67,7 +79,8 @@ export default {
           ...state,
           id:payload.payload,
           url:payload.url,
-          detailSongObj:payload.data
+          detailSongObj:payload.data,
+          playList:payload.playList
         }
       },
 
@@ -77,42 +90,44 @@ export default {
           playList:payload
         }
       },
-
+      //点击上一曲下一曲进行切换，还要判断状态单曲随机
       changeSongReducers(state,{payload}){
         let {url,detailSongObj,playIndex,playList,mode} =state;
         if(payload==='prev'){
-            if(mode===1){
+            if(mode===0){
                 playIndex=playIndex;
-            }else if(mode===2){
+            }else if(mode===1){
                 playIndex=Math.floor(Math.random()*playList.length)
             }else{
-              if(playIndex===0){
-                playIndex=playList.length-1
+              if(playIndex <= 0){
+                playIndex = playList.length-1
+              }else{
+                 playIndex-=1;
               }
-              playIndex-=1;
+             
             } 
           }else{
-            if(mode===1){
+            if(mode===0){
                 playIndex=playIndex;
-            }else if(mode===2){
+            }else if(mode===1){
                 playIndex=Math.floor(Math.random()*playList.length)
             }else{
-              if(playIndex===playList.length-1){
-                playIndex=0
-              }
-              playIndex+=1;
+              if(playIndex >= playList.length-1){
+                playIndex = 0
+              }else{
+                playIndex+=1;
+              }      
             }  
         }
-        console.log(playList.detail)
         return {
           ...state,
-          
+          id:playList[playIndex].detail.id,
           url:playList[playIndex].info,
           detailSongObj:playList[playIndex].detail,
           playIndex
         }
       },
-
+      //对状态进行切换
       changeModeReducers (state){
         let {mode} =state;
         return {
@@ -120,7 +135,7 @@ export default {
           mode:(mode+1)%3
         }
       },
-
+      //点击遮罩层歌曲 更改下标
       changeMaskSongReducers (state,{payload}){
         let {playIndex,playList} =state;
         return {
@@ -131,7 +146,7 @@ export default {
         }
       },
       getSongLyricReducers (state,{payload}){
-        let time=[],text=[];
+        let text=[];
         payload=payload.split('\n');
         payload=payload.map(val=>{
           return val.replace('[','').replace(']',',').split(',')
@@ -151,31 +166,36 @@ export default {
             }
         })
         
-        //删除最后一项
+        //删除最后一项为空字符串
         payload = payload.filter(item=>item.length > 1)
 
         for(var i=0;i<payload.length;i++){
-          time.push(payload[i][0]);
           text.push({
             time:formatTime(payload[i][0]),
             text:payload[i][1]
           })
-          //公用一句歌词进行处理
+          //公用一句歌词进行处理，把公用歌词的时间都显示出来
           if(payload[i][1].includes('[')){
             let arr=payload[i][1].replace('[','').replace(']',',').split(',');
-            time.push(arr[0]);
             text.push({
               time:formatTime(arr[0]),
               text:arr[1]
-            })
+            })  
           }
         }
-        text.sort(function(a,b){
+        //改变里面有时间的字符串
+        text=text.map(v=>{
+          if(v.text.includes(']')){
+            v.text=v.text.slice(v.text.indexOf(']')+1)
+          }
+          return v;
+        })
+        //对text进行排序 让时间一次升序
+        text=text.sort(function(a,b){
           return a.time-b.time
         })
         return {
           ...state,
-          songLyricTime:time,
           songLyricText:text
         }
       }

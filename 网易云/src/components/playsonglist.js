@@ -8,6 +8,7 @@ class Playsonglist extends Component {
             Index,
             dispatch
         }=this.props;
+        
         changeMaskChild();
         dispatch({
             type:'playSongStore/changeMaskSongReducers',
@@ -15,7 +16,8 @@ class Playsonglist extends Component {
         })
     }   
     render() {
-        let {data,type,Index} =this.props;
+        //data type Index 父组件传的参 
+        let {data,type} =this.props;
         return (
             <div>
                 {

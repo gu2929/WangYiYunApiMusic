@@ -1,3 +1,4 @@
+//引入banner接口的方法
 import {getBannerApi} from '../services/IndexLikeApi';
 export default {
 
@@ -13,6 +14,7 @@ export default {
     },
   
     effects: {
+        //对banner数据进行处理
         *getBannerList(_,{call,put}){
             let data=yield call(getBannerApi);
             yield put({

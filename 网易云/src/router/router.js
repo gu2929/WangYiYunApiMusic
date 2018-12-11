@@ -1,14 +1,15 @@
+//一级路由
 import IndexPage from '../view/IndexPage';
 import Login from '../view/login';
 import Play from '../view/play';
-
+//二级路由
 import Find from '../view/index/find';
 import Video from '../view/index/video';
 import My from '../view/index/my';
 import People from '../view/index/people';
 import Message from '../view/index/message';
 import Search from '../view/index/search';
-
+//三级路由
 import Like from '../view/index/find/like';
 import PeopleVideo from '../view/index/find/peopleVideo';
 

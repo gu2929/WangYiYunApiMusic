@@ -21,7 +21,7 @@ export function formatRandom (num) {
   sec = sec <= 9 ? '0'+ sec : sec;
   return miu +':'+ sec
 }
-
+//对时间进行处理
 export function formatTime (time) {
   let arr = time.split(':');
   return (arr[0]*60+arr[1]*1).toFixed(2)

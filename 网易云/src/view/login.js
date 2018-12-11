@@ -14,6 +14,7 @@ class Login extends Component {
             [val]:e.target.value
         })
     }
+    //判断手机号和密码判断  触发库里登录函数
     getLogin = () => {
         let {dispatch} =this.props;
         let {phone,password} =this.state;

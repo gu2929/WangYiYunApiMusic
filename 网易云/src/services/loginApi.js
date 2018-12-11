@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cookie from 'js-cookie';
 const url='http://123.206.55.50:14000';
-
+//登陆数据的接口 返回数据到redux
 
 export function getCookie () {
     return cookie.get('info')

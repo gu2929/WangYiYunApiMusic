@@ -8,17 +8,18 @@
         height:36px;
         padding:0px 15px;
         display:flex;
+        margin-top:10px;
         input{
             flex:1;
             margin-right:10px;
             border:1px solid #ccc;
-            border-radius:10px;
+            border-radius:15px;
             padding-left:10px;
         }
         button{
             padding:5px 8px;
             border:none;
-            background:#ccc;
+            background:none;
             margin-left:8px;
         }
     }
@@ -34,6 +35,9 @@
                 height:60px;
                 border-bottom:1px solid #ccc;
                 padding:10px;
+                a{
+                    color:#000;
+                }
             }
         }
     }

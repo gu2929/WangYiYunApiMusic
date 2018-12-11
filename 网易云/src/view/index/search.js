@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'dva';
-import {NavLink} from 'dva/router'
 import styles from '../../style/IndexSearch.scss';
 import Playsonglist from '../../components/playsonglist';
 class Search extends Component {
+    //点击搜索触发库里函数 
     searchSong = () => {
         let {dispatch} =this.props;
         dispatch({
@@ -11,6 +11,7 @@ class Search extends Component {
             payload:this.ipt.value
         })
     }
+    //点击播放全部 把播放列表的id都传过去 默认传第一个id触发'/play'页面歌曲详情
     searchSongs = () => {
         let {
             searchSongList,

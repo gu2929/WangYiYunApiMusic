@@ -6,6 +6,7 @@ import {NavLink} from 'dva/router';
 import Songlist from '../../../components/songlist';
 import Banner from '../../../components/banner';
 class Like extends Component {
+    //触发库里函数 banner 歌单 新歌单 vip 数据
     componentDidMount () {
         let {dispatch} =this.props;
         dispatch({

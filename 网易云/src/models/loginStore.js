@@ -1,4 +1,5 @@
 import {routerRedux} from 'dva/router';
+//引入登录接口的方法  和cookie值得方法
 import {getCookie,setCookie,getLoginApi} from '../services/loginApi';
 export default {
 
@@ -9,6 +10,7 @@ export default {
     },
   
     subscriptions: {
+        //判断cookie值进行路由拦截
       setup({ dispatch, history }) {  // eslint-disable-line
         return history.listen(({pathname})=>{
             if(pathname!=='/login'){

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Carousel} from 'antd-mobile';
+import styles from '../style/IndexPlay.scss';
 class Lyric extends Component {
     constructor () {
         super();
@@ -24,10 +25,10 @@ class Lyric extends Component {
         }    
     }
     render() {
-        let {songLyricText,time} =this.props;
+        let {songLyricText} =this.props;
         let {Index} =this.state;
         return (
-            <div>
+            <div className={styles.songlyric}>
                 <Carousel 
                     vertical
                     dots={false}
@@ -36,7 +37,9 @@ class Lyric extends Component {
                 >
                 {
                     songLyricText.map((v,i)=>{
-                        return <p key={i}>{v.text}</p>
+                        return <p key={i}
+                        className={Index===i ? 'active' : ''}
+                        >{v.text}</p>
                     })
                 }
                 </Carousel>

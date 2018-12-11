@@ -1,6 +1,6 @@
 import axios from 'axios';
 const url='http://123.206.55.50:14000';
-
+//banner 歌单 最新歌单 vip数据的接口 返回数据到redux
 export function getBannerApi () {
   return axios.get(`${url}/banner`).then(res=>{
     return res.data.banners;

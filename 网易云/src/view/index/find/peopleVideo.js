@@ -4,6 +4,7 @@ import {NavLink} from 'dva/router'
 import Banner from '../../../components/banner';
 import styles from '../../../style/IndexPeopleVideo.scss'
 class PeopleVideo extends Component {
+    //触发库里函数 得到banner数据
     componentDidMount () {
         let {dispatch} = this.props;
         dispatch({
