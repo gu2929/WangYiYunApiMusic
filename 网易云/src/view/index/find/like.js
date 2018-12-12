@@ -35,19 +35,19 @@ class Like extends Component {
                 <Banner BannerList = {BannerList}/>
                 <div className={styles.nav}>
                     <NavLink to=''>
-                        <p><img src="/public/icon/FM.png" alt=""/></p>
+                        <p><img src="../../../img/icon/FM.png" alt=""/></p>
                         <span>私人FM</span>
                     </NavLink>
                     <NavLink to=''>
-                        <p><img src="/public/icon/day.png" alt=""/></p>
+                        <p><img src="../../../img/icon/day.png" alt=""/></p>
                         <span>每日推荐</span>
                     </NavLink>
                     <NavLink to=''>
-                        <p><img src="/public/icon/songList.png" alt=""/></p>
+                        <p><img src="../../../img/icon/songList.png" alt=""/></p>
                         <span>歌单</span>
                     </NavLink>
                     <NavLink to=''>
-                        <p><img src="/public/icon/List.png" alt=""/></p>
+                        <p><img src="../../../img/icon/List.png" alt=""/></p>
                         <span>排行榜</span>
                     </NavLink>
                 </div>

@@ -15,7 +15,8 @@ export default {
       playList:[],
       playIndex:0,
       mode:0,
-      songLyricText:[]
+      songLyricText:[],
+      trackid:[]
     },
   
     subscriptions: {
@@ -70,6 +71,36 @@ export default {
           type:'getSongLyricReducers',
           payload:data
         })
+      },
+      //获取一组数据的id 随机抽出10首
+      *gettrackid ({payload},{call,put}){
+        let randomArr=[],newrandomArr=[];
+        while(true){
+          let Index = Math.floor(Math.random()*payload.arr.length);
+          if(!(randomArr.includes(payload.arr[Index]))){
+            randomArr.push(payload.arr[Index]);
+            if(randomArr.length >=10){
+              break;
+            }
+          }
+        }
+        let obj = yield call(getSongUrlApi,randomArr.join(','));
+        let data=yield call(getSongDetailApi,randomArr.join(','));
+        data.forEach(v=>{
+          obj.filter(val=>{
+            if(v.id===val.id){
+              newrandomArr.push({
+                info:val.url,
+                detail:v
+              })
+            }
+          })
+        });
+        yield put ({
+            type:'gettrackidReducers',
+            payload:newrandomArr
+        })
+        yield payload.cbk()
       }
     },
   
@@ -80,7 +111,7 @@ export default {
           id:payload.payload,
           url:payload.url,
           detailSongObj:payload.data,
-          playList:payload.playList
+          playList: payload.playList
         }
       },
 
@@ -104,7 +135,6 @@ export default {
               }else{
                  playIndex-=1;
               }
-             
             } 
           }else{
             if(mode===0){
@@ -198,8 +228,13 @@ export default {
           ...state,
           songLyricText:text
         }
+      },
+      gettrackidReducers (state,{payload}){
+        return {
+          ...state,
+          trackid:[...payload]
+        }
       }
-
     },
   
   };

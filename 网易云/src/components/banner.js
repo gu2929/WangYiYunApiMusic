@@ -20,7 +20,7 @@ class Banner extends Component {
                             'display':'block',
                             'borderRadius':'8px',
                             'margin':'20px auto 0px'
-                            }}/><p className={styles.BannerP}>{val.typeTitle}</p></NavLink>
+                            }}/><span className={styles.BannerSpan}>{val.typeTitle}</span></NavLink>
                         ))}
                         </Carousel>
                     </WingBlank>

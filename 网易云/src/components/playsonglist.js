@@ -23,7 +23,8 @@ class Playsonglist extends Component {
                 {
                     type!=='search' ? <NavLink to={{
                         pathname:'/play',
-                        id:data.id
+                        id:data.id,
+                        type:'one'
                     }}>
                         <p>{data.name}</p>
                         <p>{data.alias.length > 0 ? data.alias[0] :data.album.name}</p>

@@ -28,6 +28,7 @@ export default {
       *login({obj},{call,put}){
             let data = yield call(getLoginApi,obj);
             setCookie(data.loginType);
+            //存值之后进行跳转  routerRedux跳转页面 
             yield put (routerRedux.push({
                 pathname:'/'
             }))

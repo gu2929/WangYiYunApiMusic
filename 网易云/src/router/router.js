@@ -2,6 +2,7 @@
 import IndexPage from '../view/IndexPage';
 import Login from '../view/login';
 import Play from '../view/play';
+import TrackID from '../view/trackid';
 //二级路由
 import Find from '../view/index/find';
 import Video from '../view/index/video';
@@ -55,6 +56,9 @@ export default {
   },{
     path:'/play',
     component:Play
+  },{
+    path:'/trackid',
+    component:TrackID
   },{
     path: '/',
     redirect: '/index'

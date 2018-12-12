@@ -24,7 +24,6 @@ class Play extends Component {
             },
             dispatch
         }=this.props;
-
         //进入页面获取歌曲路径(详情) 歌词
         dispatch({
             type:'playSongStore/getSongUrl',
@@ -84,9 +83,9 @@ class Play extends Component {
     //点击上一首一下一首触发库里的方法
     changeSong = (type) => {
         let {dispatch,playList} = this.props;
-        if(playList.length===0){
-            return;
-        }
+        // if(playList.length===1){
+        //     return;
+        // }
         dispatch({
             type:'playSongStore/changeSongReducers',
             payload:type
@@ -147,7 +146,7 @@ class Play extends Component {
             this.refs.audio.play()
         })
     }
-    //控制单曲 随机 顺序
+    //控制单曲 随机 顺序标签
     ModeDom = (mode) => {
        switch (mode) {
         case 0:
