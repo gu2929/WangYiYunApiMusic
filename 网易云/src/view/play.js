@@ -36,6 +36,7 @@ class Play extends Component {
     }
     //对id进行判断  获取新的歌词
     componentWillReceiveProps (nextProps)  {
+        console.log
         let {dispatch} =this.props;
         if(nextProps.id!==this.props.id){
             dispatch({
@@ -83,9 +84,9 @@ class Play extends Component {
     //点击上一首一下一首触发库里的方法
     changeSong = (type) => {
         let {dispatch,playList} = this.props;
-        // if(playList.length===1){
-        //     return;
-        // }
+        if(playList.length===0){
+            return;
+        }
         dispatch({
             type:'playSongStore/changeSongReducers',
             payload:type

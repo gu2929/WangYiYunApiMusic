@@ -9,14 +9,14 @@ export default {
     namespace: 'playSongStore',
   
     state: {
-      id:0,
-      url:'',
-      detailSongObj:{},
-      playList:[],
-      playIndex:0,
-      mode:0,
-      songLyricText:[],
-      trackid:[]
+      id:0,//播放id
+      url:'',//播放路径
+      detailSongObj:{},//单个详情
+      playList:[],//多曲播放遮罩列表
+      playIndex:0,//上一曲下一曲播放下标
+      mode:0,//播放模式
+      songLyricText:[],//歌词详情
+      trackid:[]//听歌识曲列表
     },
   
     subscriptions: {

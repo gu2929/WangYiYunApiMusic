@@ -25,41 +25,18 @@ class TrackID extends Component {
             songList:trackid.map(v=>v.detail.name)
         })
     }
-    //自动触发时间事件
-    timeUpdate = () => {
-        let {songList,currect} =this.state;
-        let pArr=[...document.querySelectorAll('.pDom')];
-        if(this.state.currect == 9){
-            this.refs.audio.pause();
-            return;
-        }
-        if(this.refs.audio.currentTime > this.state.time.end){
-            this.refs.audio.pause();
-            this.setState({
-                currect:this.state.currect+1
-            },()=>{
-                this.refs.audio.play();
-            })
-            let flag=pArr.some(v=>{
-                return v.classList.contains('success') || v.classList.contains('error')     
-            })
-            //没有类名的话 就拼接一个没有答案
-            if(!flag){
-                this.setState({
-                    listenList:this.state.listenList.concat('没有答案')
-                })
-            }
-            //下一首开始播放前 把之前的类名清空
-            [...document.querySelectorAll('.pDom')].map(v=>{
-                v.className=v.className.replace(' success','').replace(' error','')
-            })
-        }
-        
-        //获取宽度 红色线条占的百分比 播放时间减去开始时间除以10 得到播放占比
-        this.setState({
-            passmess:Math.floor((this.refs.audio.currentTime-this.state.time.start)/10*100),
-        })
-    }
+    
+     //get 立即执行 开始时间
+     get currentTime () {
+        let {currect} =this.state;
+       if(this.refs.audio){
+           if(currect ==9){
+               return 10
+           }
+           return Math.floor(this.refs.audio.currentTime-this.state.time.start)
+       }
+       
+   }
     //audio加载完成前  设置播放时间
     startPlay = () => {
         let {trackid} =this.props;
@@ -75,17 +52,42 @@ class TrackID extends Component {
             this.refs.audio.currentTime=start;
         });
     }
-     //get 立即执行 开始时间
-     get currentTime () {
-         let {currect} =this.state;
-        if(this.refs.audio){
-            if(currect==9){
-                return 10
+    //自动触发时间事件
+    timeUpdate = () => {
+        let {songList,currect} =this.state;
+        let pArr=[...document.querySelectorAll('.pDom')];
+        if(this.refs.audio.currentTime > this.state.time.end){
+            this.refs.audio.pause();
+            if(this.state.currect==9){
+                return;
+            }else{
+                this.setState({
+                    currect:this.state.currect+1
+                },()=>{
+                    this.refs.audio.play();
+                })
+                let flag=pArr.some(v=>{
+                    return v.classList.contains('success') || v.classList.contains('error')     
+                })
+                //没有类名的话 就拼接一个没有答案
+                if(!flag){
+                    this.setState({
+                        listenList:this.state.listenList.concat('没有答案')
+                    })
+                }
             }
-            return Math.floor(this.refs.audio.currentTime-this.state.time.start)
+            //下一首开始播放前 把之前的类名清空
+            [...document.querySelectorAll('.pDom')].map(v=>{
+                v.className=v.className.replace(' success','').replace(' error','')
+            })
         }
-        
+        //获取宽度 红色线条占的百分比 播放时间减去开始时间除以10 得到播放占比
+        this.setState({
+            passmess:Math.floor((this.refs.audio.currentTime-this.state.time.start)/10*100),
+        })
     }
+    
+    
     //改变播放状态
     changePlay = () => {
         this.setState({

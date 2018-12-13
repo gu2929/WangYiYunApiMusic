@@ -18,19 +18,19 @@ class PeopleVideo extends Component {
                 <Banner BannerList={BannerList}/>
                 <div className={styles.nav}>
                     <NavLink to=''>
-                        <p><img src="../../../img/icon/FM.png" alt=""/></p>
+                        <p><img src="./img/icon/FM.png" alt=""/></p>
                         <span>电台分类</span>
                     </NavLink>
                     <NavLink to=''>
-                        <p><img src="../../../img/icon/day.png" alt=""/></p>
+                        <p><img src="./img/icon/day.png" alt=""/></p>
                         <span>电台排行</span>
                     </NavLink>
                     <NavLink to=''>
-                        <p><img src="../../../img/icon/songList.png" alt=""/></p>
+                        <p><img src="./img/icon/songList.png" alt=""/></p>
                         <span>DJ电音</span>
                     </NavLink>
                     <NavLink to=''>
-                        <p><img src="../../../img/icon/List.png" alt=""/></p>
+                        <p><img src="./img/icon/List.png" alt=""/></p>
                         <span>小冰电台</span>
                     </NavLink>
                 </div>
