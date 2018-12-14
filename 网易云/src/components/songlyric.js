@@ -8,6 +8,7 @@ class Lyric extends Component {
             Index:0
         }
     }
+    //通过传入播放时间的判断 控制走马灯下标
     componentWillReceiveProps (nextProps) {
         let {songLyricText}=this.props;
         let {Index} =this.state;

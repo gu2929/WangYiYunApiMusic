@@ -24,7 +24,7 @@ class Play extends Component {
             },
             dispatch
         }=this.props;
-        //进入页面获取歌曲路径(详情) 歌词
+        //进入页面获取单首歌曲路径(详情)  歌词
         dispatch({
             type:'playSongStore/getSongUrl',
             payload:id
@@ -36,7 +36,6 @@ class Play extends Component {
     }
     //对id进行判断  获取新的歌词
     componentWillReceiveProps (nextProps)  {
-        console.log
         let {dispatch} =this.props;
         if(nextProps.id!==this.props.id){
             dispatch({
@@ -56,8 +55,7 @@ class Play extends Component {
                     isPlay:false
                 })
             }
-        })
-        
+        })   
     }
     //get 立即执行 开始时间
     get currentTime () {
