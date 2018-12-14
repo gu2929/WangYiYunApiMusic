@@ -10,6 +10,7 @@ class Search extends Component {
             type:'searchStore/getsearchSongList',
             payload:this.ipt.value
         })
+        window._hmt.push(['_trackEvent','music','搜索']);
     }
     //点击播放全部 把播放列表的id都传给库里 默认传第一个id触发'/play'页面歌曲详情
     // 异步问题先执行跳转在执行数据获取  在/play页面 点击和render里面才用到数据也属于异步 所以不用做异步操作

@@ -10,14 +10,25 @@
 
   <div id="root"></div>
   <script src="./index.js"></script>
+  <!-- 移动端调试 -->
+  <script src='//cdn.jsdelivr.net/npm/eruda'></script>
+  <!-- 捕获错误 -->
+  <script src="https://browser.sentry-cdn.com/4.4.1/bundle.min.js" crossorigin="anonymous"></script>
   <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?9bbea252f035426e8e4431895b7c2eba";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
+      //埋点
+      var _hmt = _hmt || [];
+      window._hmt=_hmt;
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?9bbea252f035426e8e4431895b7c2eba";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      //移动端调试
+      eruda.init()
+      //捕获错误
+      Sentry.init({ dsn: 'https://b5b5b0694dc441f0a7ce9910bdbaabd1@sentry.io/1352780' });
+     
     </script>
     
 </body>

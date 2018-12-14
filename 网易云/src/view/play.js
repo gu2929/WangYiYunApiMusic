@@ -194,6 +194,7 @@ class Play extends Component {
                 <div className={styles.centBox}>
                     <Carousel
                         autoplayInterval={500}
+                        dots={false}
                     >
                      <div className={styles.imgBox1}>
                         <div className={styles.imgBox2}>
@@ -210,12 +211,12 @@ class Play extends Component {
                     </Carousel>
                    
                     <div className={styles.bottom}>
-                    <h3>
-                        <i className={styles.iconfont}>&#xe601;</i>
-                        <i className={styles.iconfont}>&#xe6b1;</i>
-                        <i className={styles.iconfont}>&#xe702;</i>
-                        <i className={styles.iconfont}>&#xe667;</i>
-                    </h3>
+                        <h3>
+                            <i className={styles.iconfont}>&#xe601;</i>
+                            <i className={styles.iconfont}>&#xe6b1;</i>
+                            <i className={styles.iconfont}>&#xe702;</i>
+                            <i className={styles.iconfont}>&#xe667;</i>
+                        </h3>
                     
                         <p ref='pDom'>
                             <time>{this.currentTime}</time>

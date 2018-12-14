@@ -224,6 +224,11 @@ export default {
         text=text.sort(function(a,b){
           return a.time-b.time
         })
+        //把数组里面值为NaN和空字符的再次处理
+        text=text.filter(v=>{
+          return (v.time >= 0.00 && v.text)
+        })
+        console.log(text)
         return {
           ...state,
           songLyricText:text
