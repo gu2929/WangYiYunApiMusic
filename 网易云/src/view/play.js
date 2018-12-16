@@ -268,7 +268,7 @@ class Play extends Component {
                                 })
                             }
                         </div>
-                        <button onClick={this.changeMaskChild}>关闭</button>
+                        <button onClick={this.changeMaskChild}>关闭11111</button>
                     </div>      
                 </div>
             </div>
